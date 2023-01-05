@@ -1,1 +1,23 @@
-<p>top works!</p>
+<div class="container" *ngIf="language === 'ja'">
+  <div class="row">
+    <h2 class="col-md-12" style="text-align: center;">{{topTitle}}</h2>
+  </div>
+  <div class="row" style="margin-top: 2rem;">
+    <h3 class="col-md-6">{{introTitle}}</h3>
+    <p class="col-md-6" style="white-space: pre-wrap; margin-top: 1rem;">
+      {{introduction}}
+    </p>
+  </div>
+</div>
+
+<div class="container" *ngIf="language === 'en'">
+  <div class="row">
+    <h2 class="col-md-12" style="text-align: center;">{{topTitleEn}}</h2>
+  </div>
+  <div class="row" style="margin-top: 2rem;">
+    <h3 class="col-md-6">{{introTitleEn}}</h3>
+    <p class="col-md-6" style="white-space: pre-wrap; margin-top: 1rem;">
+      {{introductionEn}}
+    </p>
+  </div>
+</div>

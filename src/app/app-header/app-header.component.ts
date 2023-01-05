@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-header.component.scss'],
 })
 export class AppHeaderComponent implements OnInit {
-  constructor() {}
+  constructor(public router: Router) {}
   imgSrc: string = 'assets/images/header-logo.png';
   topPath: string = '/top';
 
   ngOnInit(): void {}
 
-  toTop(): void {}
+  toTop(): void {
+    if (this.router.url !== this.topPath) {
+      this.router.navigate([this.topPath]);
+    }
+  }
 }
