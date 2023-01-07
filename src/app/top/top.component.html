@@ -1,4 +1,4 @@
-<div class="container" *ngIf="language === 'ja'">
+<div class="container">
   <div class="row">
     <h2 class="col-md-12" style="text-align: center;">{{topTitle}}</h2>
   </div>
@@ -8,6 +8,7 @@
       {{introduction}}
     </p>
   </div>
+  <button (click)="changeMode()">changeMode</button>
 </div>
 
 <div class="container" *ngIf="language === 'en'">

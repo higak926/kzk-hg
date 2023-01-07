@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DisplayModeService } from 'src/app/services/display-mode.service';
 
 @Component({
   selector: 'top',
@@ -20,7 +21,11 @@ export class TopComponent implements OnInit {
     'To put it simply, it is the hobby of the founder, Kazuaki Higa.\n\n' +
     'We aim to be an interesting site that introduces development apps, summarizes current affairs (?), and interesting trends.\n\n' +
     'I would appreciate it if you could see it with warm eyes.';
-  constructor() {}
+  constructor(private displayModeService: DisplayModeService) {}
 
   ngOnInit(): void {}
+
+  changeMode(): void {
+    this.displayModeService.setModeType(1);
+  }
 }
