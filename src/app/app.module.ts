@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TopComponent } from './top/top.component';
 import { ErrorComponent } from './error/error.component';
 
 @NgModule({

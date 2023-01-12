@@ -1,4 +1,12 @@
-<div class="container">
+<swiper (swiper)="onSwiper($event)" [config]="config" #usefulSwiper style="max-width:100%; height: auto;">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" *ngFor="let image of myFavoriteImages">
+      <img src={{imagePath+image.name}} style="max-width:100% ; height: auto;" />
+    </div>
+  </div>
+</swiper>
+
+<div class=" container">
   <div class="row">
     <h2 class="col-md-12" style="text-align: center;">{{topTitle}}</h2>
   </div>
@@ -14,7 +22,7 @@
   </div>
 </div>
 
-<div class="container" *ngIf="language === 'en'">
+<div class=" container" *ngIf="language === 'en'">
   <div class="row">
     <h2 class="col-md-12" style="text-align: center;">{{topTitleEn}}</h2>
   </div>

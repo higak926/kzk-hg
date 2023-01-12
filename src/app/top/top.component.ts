@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DisplayModeService } from 'src/app/services/display-mode.service';
+import { SwiperOptions } from 'swiper';
 
 @Component({
   selector: 'top',
@@ -7,6 +8,29 @@ import { DisplayModeService } from 'src/app/services/display-mode.service';
   styleUrls: ['./top.component.scss'],
 })
 export class TopComponent implements OnInit {
+  config: SwiperOptions = {
+    autoplay: {
+      delay: 1000,
+      disableOnInteraction: false,
+    },
+    speed: 800,
+    loop: true,
+    effect: 'fade',
+    grabCursor: true,
+    fadeEffect: {
+      crossFade: true,
+    },
+  };
+  myFavoriteImages = [
+    { name: 'web.png' },
+    { name: 'soccer.png' },
+    { name: 'big_data.png' },
+    { name: 'coding.png' },
+    { name: 'math.png' },
+    { name: 'economy.png' },
+    { name: 'ai.png' },
+    { name: 'my_favorite.png' },
+  ];
   imagePath = 'assets/images/my_favorite/';
   myFavoriteImage: string = 'my_favorite.png';
   aiImage: string = 'ai.png';
@@ -35,5 +59,9 @@ export class TopComponent implements OnInit {
 
   changeMode(): void {
     this.displayModeService.setModeType(1);
+  }
+
+  onSwiper(swiper: any) {
+    swiper.update();
   }
 }
