@@ -1,5 +1,5 @@
 img {
-  width: 6rem;
+  width: 5rem;
   border-radius: 50%;
   border-color: #000033;
   border: 2px solid #000033;
@@ -15,5 +15,6 @@ img {
   right: 0px;
   left: 0px;
   z-index: 10;
+  display:flex;
   background-color: white !important;
 }

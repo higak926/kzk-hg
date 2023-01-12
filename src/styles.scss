@@ -57,5 +57,14 @@ table {
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
+.btn-primary {
+  background-color: #000066;
+  border-color: inherit;
+}
+
+.btn-primary:hover {
+  background-color: #000099;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

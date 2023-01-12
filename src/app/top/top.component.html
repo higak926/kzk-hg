@@ -9,6 +9,9 @@
     </p>
   </div>
   <button (click)="changeMode()">changeMode</button>
+  <div class="row">
+    <img [src]="imagePath + myFavoriteImage" alt="header-logo" class="col-md-12">
+  </div>
 </div>
 
 <div class="container" *ngIf="language === 'en'">

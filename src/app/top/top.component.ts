@@ -7,6 +7,14 @@ import { DisplayModeService } from 'src/app/services/display-mode.service';
   styleUrls: ['./top.component.scss'],
 })
 export class TopComponent implements OnInit {
+  imagePath = 'assets/images/my_favorite/';
+  myFavoriteImage: string = 'my_favorite.png';
+  aiImage: string = 'ai.png';
+  bigDataImage: string = 'big_data.png';
+  codingImage: string = 'coding.png';
+  mathImage: string = 'math.png';
+  soccerImage: string = 'soccer.png';
+  webImage: string = 'web.png';
   language: string = 'ja';
   topTitle: string = 'ようこそ 一晃のサイトへ !';
   introTitle: string = '何このページ ？';
