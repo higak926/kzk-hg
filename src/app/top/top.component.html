@@ -1,4 +1,4 @@
-<swiper (swiper)="onSwiper($event)" [config]="config" #usefulSwiper style="max-width:100%; height: auto;">
+<swiper [config]="swiperConfig" #usefulSwiper style="max-width:100%; height: auto; margin-bottom: 1rem;">
   <div class="swiper-wrapper">
     <div class="swiper-slide" *ngFor="let image of myFavoriteImages">
       <img src={{imagePath+image.name}} style="max-width:100% ; height: auto;" />
@@ -8,28 +8,8 @@
 
 <div class=" container">
   <div class="row">
-    <h2 class="col-md-12" style="text-align: center;">{{topTitle}}</h2>
+    <h2 class="col-md-12" style="text-align: center;">Kazuaki's Site</h2>
   </div>
   <div class="row" style="margin-top: 2rem;">
-    <h3 class="col-md-6">{{introTitle}}</h3>
-    <p class="col-md-6" style="white-space: pre-wrap; margin-top: 1rem;">
-      {{introduction}}
-    </p>
-  </div>
-  <button (click)="changeMode()">changeMode</button>
-  <div class="row">
-    <img [src]="imagePath + myFavoriteImage" alt="header-logo" class="col-md-12">
-  </div>
-</div>
-
-<div class=" container" *ngIf="language === 'en'">
-  <div class="row">
-    <h2 class="col-md-12" style="text-align: center;">{{topTitleEn}}</h2>
-  </div>
-  <div class="row" style="margin-top: 2rem;">
-    <h3 class="col-md-6">{{introTitleEn}}</h3>
-    <p class="col-md-6" style="white-space: pre-wrap; margin-top: 1rem;">
-      {{introductionEn}}
-    </p>
   </div>
 </div>

@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-// import { Router } from '@angular/router';
-
 import { Event, NavigationEnd, Router, RouterEvent } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -16,6 +14,7 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
   topPath: string = '/top';
   isTop: boolean = false;
   currentUrl: string = '';
+  modeType: string = 'Default';
   private onDestroy$: Subject<void> = new Subject();
 
   constructor(public router: Router) {}
@@ -30,19 +29,13 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe((event: RouterEvent) => {
-        console.log('this.currentUrl 前');
-        console.log(this.currentUrl);
         this.currentUrl = event.url;
         this.isTop =
           this.currentUrl === this.topPath || this.currentUrl === this.rootPath;
-        console.log('top');
-        console.log(this.currentUrl);
       });
   }
 
   toTop(): void {
-    console.log('rap');
-    console.log(this.router.url);
     if (this.router.url !== this.topPath) {
       this.router.navigate([this.topPath]);
     }
