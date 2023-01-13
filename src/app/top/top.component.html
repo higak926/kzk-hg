@@ -3,11 +3,10 @@
 </div>
 
 
-<swiper *ngIf="introDisplayed" [config]="swiperConfig" #usefulSwiper
-  style="max-width:100%; height: auto; margin-bottom: 1rem;">
+<swiper [config]="swiperConfig" #usefulSwiper style="max-width:100%; height: auto; margin-bottom: 1rem;">
   <div class="swiper-wrapper">
     <div class="swiper-slide" *ngFor="let image of myFavoriteImages">
-      <img src={{imagePath+image.name}} style="max-width:100% ; height: auto;" />
+      <img [hidden]="!introDisplayed" src={{imagePath+image.name}} style="max-width:100% ; height: auto;" />
     </div>
   </div>
 </swiper>
