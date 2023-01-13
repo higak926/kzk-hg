@@ -14,10 +14,20 @@ export const displayModePersistStorage = persistState({
   key: 'displayModeStore',
 });
 
+export const introDisplayPersistStorage = persistState({
+  include: ['intro-display'],
+  key: 'introDisplayStore',
+});
+
 const providers = [
   {
     provide: 'persistStorage',
     useValue: displayModePersistStorage,
+    multi: true,
+  },
+  {
+    provide: 'persistStorage',
+    useValue: introDisplayPersistStorage,
     multi: true,
   },
 ];
