@@ -2,5 +2,8 @@
   <div class="header-inner">
     <a (click)="toTop()" href="javascript:void(0)"><img [src]="imgSrc" alt="header-logo"></a>
   </div>
+  <div class="mt-4">
+    <strong>Playing <span class="percent">{{playPercent}}%</span></strong>
+  </div>
   <button class="btn btn-primary w-35 h-25 m-3" *ngIf="isTop">{{modeType}}</button>
 </div>

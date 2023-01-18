@@ -18,5 +18,25 @@
     <h2 class="col-md-12" style="text-align: center;">Kazuaki's Site</h2>
   </div>
   <div class="row" style="margin-top: 2rem;">
+    <div class="col-md-6">
+      <h2>はじめに</h2>
+      <strong>ようこそ、比嘉 一晃のサイトへ</strong>
+      <p>
+        このサイトでは作者の興味あるカテゴリごとに情報をまとめています。<br>
+        これらの情報が少しでもみなさんのお役に立てたり、少しでも興味を持って遊んでいただけると大変嬉しいです。(ちょっとした仕掛けもあるかも)<br>
+        それでは、楽しんでいってください。
+      </p>
+    </div>
+    <div class="col-md-6">
+      <strong>カテゴリ 一覧</strong>
+      <div class="row">
+        <div class="col-4 mt-1" *ngFor="let category of myFavoriteCategory">
+          <button class="btn btn-primary" style="width: 100px;">{{category.name}}</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h4 class="col-md-12">お知らせ</h4>
+    </div>
   </div>
 </div>

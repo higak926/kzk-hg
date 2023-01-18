@@ -36,6 +36,15 @@ export class TopComponent implements OnInit {
     { name: 'ai.png' },
     { name: 'my_favorite.png' },
   ];
+  myFavoriteCategory = [
+    { name: 'Web' },
+    { name: 'Soccer' },
+    { name: 'Big Data' },
+    { name: 'Coding' },
+    { name: 'Math' },
+    { name: 'Economy' },
+    { name: 'AI' },
+  ];
 
   constructor(private introDisplayService: IntroDisplayService) {}
 

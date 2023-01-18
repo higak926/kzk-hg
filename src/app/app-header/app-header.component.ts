@@ -15,6 +15,7 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
   isTop: boolean = false;
   currentUrl: string = '';
   modeType: string = 'Default';
+  playPercent: string = '5';
   private onDestroy$: Subject<void> = new Subject();
 
   constructor(public router: Router) {}
