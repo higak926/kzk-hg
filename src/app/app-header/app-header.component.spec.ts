@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppHeaderComponent } from './app-header.component';
 
@@ -8,9 +9,9 @@ describe('AppHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AppHeaderComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule],
+      declarations: [AppHeaderComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +22,10 @@ describe('AppHeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('click toTop', () => {
+    component.toTop();
+    expect(component.router.url).toEqual('/');
   });
 });
