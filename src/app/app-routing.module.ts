@@ -8,6 +8,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('src/app/top/top.module').then((m) => m.TopModule),
   },
+  {
+    path: 'category',
+    loadChildren: () =>
+      import('src/app/category/category.module').then((m) => m.CategoryModule),
+  },
   { path: '', redirectTo: '/top', pathMatch: 'full' },
   { path: '**', component: ErrorComponent },
 ];

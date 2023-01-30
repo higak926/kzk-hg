@@ -31,7 +31,8 @@
       <strong>カテゴリ 一覧</strong>
       <div class="row">
         <div class="col-4 mt-1" *ngFor="let category of myFavoriteCategory">
-          <button class="btn btn-primary" style="width: 100px;">{{category.name}}</button>
+          <button class="btn btn-primary" style="width: 100px;"
+            (click)="toCategory(category.name)">{{category.name}}</button>
         </div>
       </div>
     </div>
