@@ -2,20 +2,18 @@
   <img src={{introPath}} style="max-width:100% ; height: auto;" />
 </div>
 
-
-<swiper [config]="swiperConfig" #usefulSwiper style="max-width:100%; height: auto; margin-bottom: 1rem;">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide" *ngFor="let image of myFavoriteImages">
-      <img [hidden]="!introDisplayed" src={{imagePath+image.name}} style="max-width:100% ; height: auto;" />
-    </div>
-  </div>
-</swiper>
-
-
-
-<div class=" container">
-  <div class="row">
-    <h2 class="col-md-12" style="text-align: center;">Kazuaki's Site</h2>
+<div class="container">
+  <div class="row align-items-center">
+    <h2 class="col-md-6" style="text-align: center;">
+      <swiper [config]="swiperConfig" #usefulSwiper style="max-width:100%; height: auto; margin-bottom: 1rem;">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" *ngFor="let image of myFavoriteImages">
+            <img [hidden]="!introDisplayed" src={{imagePath+image.name}} style="max-width:100% ; height: auto;" />
+          </div>
+        </div>
+      </swiper>
+    </h2>
+    <h2 class="col-md-6 sample" style="text-align: center;">Kazuaki's Site</h2>
   </div>
   <div class="row" style="margin-top: 2rem;">
     <div class="col-md-6">
