@@ -11,7 +11,13 @@ export enum Path {
 
 export enum DisplayModeType {
   DEFAULT = 0,
-  DEVELOP_APPS = 1,
+  WEB = 1,
+  SOCCER = 2,
+  BIG_DATA = 3,
+  CODING = 4,
+  MATH = 5,
+  ECONOMY = 6,
+  AI = 7,
 }
 
 export enum IntroDisplayType {
