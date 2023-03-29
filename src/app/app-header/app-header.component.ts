@@ -2,9 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Event, NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+
 import { DisplayModeService } from 'src/app/services/display-mode.service';
 import { LoginService } from 'src/app/services/login.service';
 import { DisplayModeType } from 'src/app/enums';
+import { PlayingManagerService } from 'src/app/services/playing-manager.service';
+import { PlayingManagerQuery } from 'src/app/queries/playing-manager.query';
+import { IntroDisplayType, Path, PlayingManagerType } from 'src/app/enums';
 
 /**
  * AppHeaderComponent
@@ -21,7 +25,7 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
   isTop: boolean = false;
   currentUrl: string = '';
   modeType: string = 'Default';
-  playPercent: string = '5';
+  playPercent: number = 0;
   loginBtn: string = 'ログイン';
   showModeSelect: boolean = false;
   selectedMode: string = '';
@@ -41,7 +45,8 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     private loginService: LoginService,
-    private displayModeService: DisplayModeService
+    private displayModeService: DisplayModeService,
+    private playingManagerQuery: PlayingManagerQuery
   ) {}
 
   /**
@@ -67,6 +72,31 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
         this.isTop =
           this.currentUrl === this.topPath || this.currentUrl === this.rootPath;
       });
+
+    this.calculatePlayPercent();
+  }
+
+  /**
+   * calculatePlayPercent
+   */
+  calculatePlayPercent(): void {
+    const target = this.playingManagerQuery.getValue();
+    const displayedNumbers = [
+      target.displayedTop,
+      target.displayedWeb,
+      target.displayedSoccer,
+      target.displayedBigData,
+      target.displayedCoding,
+      target.displayedMath,
+      target.displayedEconomy,
+      target.displayedAi,
+    ];
+
+    displayedNumbers.map((displayedNumber) => {
+      if (!!displayedNumber) {
+        this.playPercent += 5;
+      }
+    });
   }
 
   /**

@@ -3,7 +3,9 @@ import { SwiperOptions } from 'swiper';
 import { Router } from '@angular/router';
 
 import { IntroDisplayService } from 'src/app/services/intro-display.service';
-import { IntroDisplayType, Path } from 'src/app/enums';
+import { PlayingManagerService } from 'src/app/services/playing-manager.service';
+import { PlayingManagerQuery } from 'src/app/queries/playing-manager.query';
+import { IntroDisplayType, Path, PlayingManagerType } from 'src/app/enums';
 
 @Component({
   selector: 'top',
@@ -49,20 +51,34 @@ export class TopComponent implements OnInit {
 
   constructor(
     private introDisplayService: IntroDisplayService,
-    private router: Router
+    private router: Router,
+    private playingManagerService: PlayingManagerService,
+    private playingManagerQuery: PlayingManagerQuery
   ) {}
 
   /**
    * onInit
    */
   ngOnInit(): void {
+    // 初回表示済みフラグ セット
     this.introDisplayed =
       this.introDisplayService.getDisplayed() === IntroDisplayType.DISPLAYED;
+    // 初回表示の場合、welcome gifを表示
     if (!this.introDisplayed) {
       setTimeout(() => {
         this.introDisplayService.setDisplayed(IntroDisplayType.DISPLAYED);
         this.introDisplayed = true;
       }, 12000);
+    }
+
+    // 初回表示の場合、表示回数を更新
+    if (
+      this.playingManagerQuery.getValue().displayedTop ===
+      PlayingManagerType.NONE_DISPLAYED_NUMBER
+    ) {
+      this.playingManagerService.setDisplayedTop(
+        this.playingManagerQuery.getValue().displayedTop + 1
+      );
     }
   }
 

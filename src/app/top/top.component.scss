@@ -12,19 +12,3 @@ h3 {
 .between{
   justify-content: space-between;
 }
-
-.sample{
-  font-size: 150%;
-  font-weight:600;
-  animation:rainbow 3s infinite;
-  -webkit-animation:rainbow 3s infinite;
-}
-
-@keyframes rainbow{
-  0%{color:#0000FF;}
-  100%{color:#000066;}
-}
-@-webkit-keyframes rainbow{
-  0%{color:#0000FF;}
-  100%{color:#000066;}
-}

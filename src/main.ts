@@ -8,15 +8,23 @@ if (environment.production) {
   enableProdMode();
 }
 
+// 表示モード session storage
 export const displayModePersistStorage = persistState({
   include: ['display-mode'],
   storage: sessionStorage,
   key: 'displayModeStore',
 });
 
+// 初回表示制御 local storage
 export const introDisplayPersistStorage = persistState({
   include: ['intro-display'],
   key: 'introDisplayStore',
+});
+
+// Playing管理 local storage
+export const playingManagerPersistStorage = persistState({
+  include: ['playing-manager'],
+  key: 'playingManagerStore',
 });
 
 const providers = [
@@ -28,6 +36,11 @@ const providers = [
   {
     provide: 'persistStorage',
     useValue: introDisplayPersistStorage,
+    multi: true,
+  },
+  {
+    provide: 'persistStorage',
+    useValue: playingManagerPersistStorage,
     multi: true,
   },
 ];
