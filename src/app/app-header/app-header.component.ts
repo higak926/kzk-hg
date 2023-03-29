@@ -4,11 +4,8 @@ import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
 import { DisplayModeService } from 'src/app/services/display-mode.service';
-import { LoginService } from 'src/app/services/login.service';
 import { DisplayModeType } from 'src/app/enums';
-import { PlayingManagerService } from 'src/app/services/playing-manager.service';
 import { PlayingManagerQuery } from 'src/app/queries/playing-manager.query';
-import { IntroDisplayType, Path, PlayingManagerType } from 'src/app/enums';
 
 /**
  * AppHeaderComponent
@@ -30,21 +27,24 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
   showModeSelect: boolean = false;
   selectedMode: string = '';
   modeList: SelectModeType[] = [
-    { id: DisplayModeType.DEFAULT, name: 'Default' },
-    { id: DisplayModeType.WEB, name: 'Web' },
-    { id: DisplayModeType.SOCCER, name: 'Soccer' },
-    { id: DisplayModeType.BIG_DATA, name: 'Big Data' },
-    { id: DisplayModeType.CODING, name: 'Coding' },
-    { id: DisplayModeType.MATH, name: 'Math' },
-    { id: DisplayModeType.DEFAULT, name: 'Economy' },
-    { id: DisplayModeType.AI, name: 'AI' },
+    { id: DisplayModeType.DEFAULT, name: 'Default', path: '/top' },
+    { id: DisplayModeType.WEB, name: 'Web', path: '/category/web' },
+    { id: DisplayModeType.SOCCER, name: 'Soccer', path: '/category/soccer' },
+    {
+      id: DisplayModeType.BIG_DATA,
+      name: 'Big Data',
+      path: '/category/big-data',
+    },
+    { id: DisplayModeType.CODING, name: 'Coding', path: '/category/coding' },
+    { id: DisplayModeType.MATH, name: 'Math', path: '/category/math' },
+    { id: DisplayModeType.DEFAULT, name: 'Economy', path: '/category/economy' },
+    { id: DisplayModeType.AI, name: 'AI', path: '/category/ai' },
   ];
 
   private onDestroy$: Subject<void> = new Subject();
 
   constructor(
     public router: Router,
-    private loginService: LoginService,
     private displayModeService: DisplayModeService,
     private playingManagerQuery: PlayingManagerQuery
   ) {}
@@ -109,14 +109,6 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * toLogin
-   */
-  toLogin(): void {
-    console.log('Loginするよ!');
-    this.loginService.login();
-  }
-
-  /**
    * モード選択 キャンセル
    */
   modeSelectCancel(): void {
@@ -128,11 +120,30 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
    */
   modeSelectOk(): void {
     this.modeType = this.selectedMode;
-    const target = this.modeList.find((e) => e.name === this.selectedMode);
+    const target: SelectModeType | undefined = this.modeList.find(
+      (e) => e.name === this.selectedMode
+    );
     target
       ? this.displayModeService.setModeType(target.id)
       : this.displayModeService.setModeType(DisplayModeType.DEFAULT);
     this.showModeSelect = false;
+    this.toSelectModePage(target);
+  }
+
+  /**
+   * 選択モード ページ遷移
+   */
+  toSelectModePage(target: SelectModeType | undefined): void {
+    // 選択したモードがない場合、トップへ（異常系）
+    if (!target) {
+      this.router.navigate([this.topPath]);
+      return;
+    }
+
+    // 選択したモードに沿って、リダイレクト
+    if (this.router.url !== target.path) {
+      this.router.navigate([target.path]);
+    }
   }
 
   /**
@@ -157,4 +168,5 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
 export interface SelectModeType {
   id: number;
   name: string;
+  path: string;
 }

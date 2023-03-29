@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  showFiller: boolean = false;
   title = 'kzk-hg';
+  loginLogoImage = 'assets/images/login_logo.png';
 
   constructor() {}
 }
