@@ -1,28 +1,12 @@
-  <!-- header -->
-  <app-header></app-header>
+<!-- header -->
+<app-header></app-header>
 
-  <mat-drawer-container class="sidenav-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side" position="end">
-      <p>Auto-resizing sidenav</p>
-      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-      <button (click)="showFiller = !showFiller" mat-raised-button>
-        Toggle extra text
-      </button>
-    </mat-drawer>
 
-    <div class="sidenav-content">
-      <img src={{loginLogoImage}} style="max-width:100% ; height: auto;">
-      <!-- <button type="button" class="btn btn-primary" mat-button (click)="drawer.toggle()">
-        <img src={{loginLogoImage}} />
-      </button> -->
-    </div>
 
-  </mat-drawer-container>
+<div class="wrapper">
+  <!-- router-outlet -->
+  <router-outlet></router-outlet>
 
-  <div class="wrapper">
-    <!-- router-outlet -->
-    <router-outlet></router-outlet>
-
-    <!-- footer -->
-    <app-footer></app-footer>
-  </div>
+  <!-- footer -->
+  <app-footer></app-footer>
+</div>

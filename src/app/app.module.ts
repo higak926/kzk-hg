@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -41,6 +42,7 @@ registerLocaleData(ja);
     NzModalModule,
     NzButtonModule,
     NzRadioModule,
+    NzMenuModule,
     MatIconModule,
     MatToolbarModule,
     MatSidenavModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Event, NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -40,6 +40,10 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
     { id: DisplayModeType.DEFAULT, name: 'Economy', path: '/category/economy' },
     { id: DisplayModeType.AI, name: 'AI', path: '/category/ai' },
   ];
+  getScreenWidth: number = 0;
+  isPhoneSize: boolean = false;
+  menuOpened: boolean = false;
+  private readonly phoneSizeBounds: number = 430;
 
   private onDestroy$: Subject<void> = new Subject();
 
@@ -53,6 +57,9 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
    * ngOnInit
    */
   ngOnInit(): void {
+    // 画面サイズでヘッダー表示内容を判定
+    this.getScreenWidth = window.innerWidth;
+    this.isPhoneSize = this.getScreenWidth <= this.phoneSizeBounds;
     const currentModeName = this.modeList.find(
       (e) => e.id === this.displayModeService.getModeType()
     )?.name;
@@ -150,8 +157,15 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
    * モード選択モーダル オープン
    */
   showModeSelectModal(): void {
+    this.menuOpened = false;
     this.selectedMode = this.modeType;
     this.showModeSelect = true;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.getScreenWidth = window.innerWidth;
+    this.isPhoneSize = this.getScreenWidth <= this.phoneSizeBounds;
   }
 
   /**
