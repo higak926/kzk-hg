@@ -5,38 +5,33 @@
   </div>
 
   <!-- Playing -->
-  <div class="mt-4">
-    <strong>Playing <span class="percent">{{playPercent}}%</span></strong>
+  <div class="mt-3">
+    <strong style="display: flex;">Playing<span class="percent ms-1">{{playPercent}}%</span></strong>
+    <!-- モード選択 -->
+    <div>
+      <a (click)="showModeSelectModal()" style="color: navy;">{{modeType}}</a>
+    </div>
+    <!-- モード選択 モーダル -->
+    <nz-modal [(nzVisible)]="showModeSelect" nzTitle="Mode Select Modal" (nzOnCancel)="modeSelectCancel()"
+      (nzOnOk)="modeSelectOk()">
+      <ng-container *nzModalContent>
+        <nz-radio-group [(ngModel)]="selectedMode">
+          <div *ngFor="let mode of modeList"><label nz-radio nzValue={{mode.name}}>{{mode.name}}</label></div>
+        </nz-radio-group>
+      </ng-container>
+    </nz-modal>
   </div>
 
   <!-- Hamburger Menu -->
   <div *ngIf="isPhoneSize">
-    <ul nz-menu nzMode="inline" class="header-inner">
-      <li nz-submenu nzIcon="bars" [(nzOpen)]="menuOpened">
-        <ul>
-          <li nz-menu-group>
-            <!-- モード選択 -->
-            <div style="text-align: center;">
-              <a (click)="showModeSelectModal()">{{modeType}}</a>
-            </div>
-            <nz-modal [(nzVisible)]="showModeSelect" nzTitle="Mode Select Modal" (nzOnCancel)="modeSelectCancel()"
-              (nzOnOk)="modeSelectOk()">
-              <ng-container *nzModalContent>
-                <nz-radio-group [(ngModel)]="selectedMode">
-                  <div *ngFor="let mode of modeList"><label nz-radio nzValue={{mode.name}}>{{mode.name}}</label></div>
-                </nz-radio-group>
-              </ng-container>
-            </nz-modal>
-          </li>
-          <li nz-menu-group>
-            <ul>
-              <li nz-menu-item>Option 3</li>
-              <li nz-menu-item>Option 4</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <!-- close button -->
+    <button nz-button *ngIf="menuOpened" class="header-inner hamburger-menu-outer" (click)="closeMenu()">
+      <span nz-icon nzType="close" nzTheme="outline"></span>
+    </button>
+    <!-- bars button -->
+    <button nz-button *ngIf="!menuOpened" class="header-inner hamburger-menu-outer" (click)="openMenu()">
+      <span nz-icon nzType="bars" nzTheme="outline"></span>
+    </button>
   </div>
 
   <!-- PC Menu -->

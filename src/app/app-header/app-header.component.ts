@@ -1,4 +1,11 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  HostListener,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Event, NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -16,6 +23,7 @@ import { PlayingManagerQuery } from 'src/app/queries/playing-manager.query';
   styleUrls: ['./app-header.component.scss'],
 })
 export class AppHeaderComponent implements OnInit, OnDestroy {
+  @Output() hamburgerMenuOpened = new EventEmitter<boolean>();
   imgSrc: string = 'assets/images/header-logo.png';
   rootPath: string = '/';
   topPath: string = '/top';
@@ -158,10 +166,30 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
    */
   showModeSelectModal(): void {
     this.menuOpened = false;
+    this.hamburgerMenuOpened.emit(this.menuOpened);
     this.selectedMode = this.modeType;
     this.showModeSelect = true;
   }
 
+  /**
+   * メニュー オープン
+   */
+  openMenu(): void {
+    this.menuOpened = true;
+    this.hamburgerMenuOpened.emit(this.menuOpened);
+  }
+
+  /**
+   * メニュー クローズ
+   */
+  closeMenu(): void {
+    this.menuOpened = false;
+    this.hamburgerMenuOpened.emit(this.menuOpened);
+  }
+
+  /**
+   * リサイズ スマホサイズ判定
+   */
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
     this.getScreenWidth = window.innerWidth;
