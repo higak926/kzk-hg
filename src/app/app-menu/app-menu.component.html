@@ -1,17 +1,15 @@
 <ul nz-menu nzMode="inline">
   <li nz-submenu nzTitle="アカウント" nzIcon="login">
     <ul>
-      <li nz-menu-group nzTitle="アカウント">
-        <ul>
-          <li nz-menu-item nzSelected>サインイン</li>
-          <li nz-menu-item>アカウントをお持ちでない方</li>
-        </ul>
-      </li>
+      <li nz-menu-item>サインイン</li>
+      <li nz-menu-item>アカウントをお持ちでない方</li>
     </ul>
   </li>
   <li nz-submenu nzTitle="カテゴリー" nzIcon="global">
     <ul>
-      <li nz-menu-item *ngFor="let favorite of myFavoriteCategory">{{favorite.name}}</li>
+      <li nz-menu-item *ngFor="let favorite of myFavoriteCategory" (click)="toCategory(favorite.name)">
+        {{favorite.name}}
+      </li>
     </ul>
   </li>
 </ul>

@@ -5,6 +5,7 @@ import {
   HostListener,
   Output,
   EventEmitter,
+  Input,
 } from '@angular/core';
 import { Event, NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -50,7 +51,7 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
   ];
   getScreenWidth: number = 0;
   isPhoneSize: boolean = false;
-  menuOpened: boolean = false;
+  @Input() menuOpened: boolean = false;
   private readonly phoneSizeBounds: number = 430;
 
   private onDestroy$: Subject<void> = new Subject();
@@ -118,6 +119,8 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
    * toTop
    */
   toTop(): void {
+    this.menuOpened = false;
+    this.hamburgerMenuOpened.emit(this.menuOpened);
     this.router.url !== this.topPath
       ? this.router.navigate([this.topPath])
       : location.reload();

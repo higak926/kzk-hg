@@ -1,8 +1,8 @@
 <!-- header -->
-<app-header (hamburgerMenuOpened)="changeMenuOpenedStatus($event)"></app-header>
+<app-header [menuOpened]="menuOpened" (hamburgerMenuOpened)="changeMenuOpenedStatus($event)"></app-header>
 
 <div class="wrapper" *ngIf="menuOpened">
-  <app-menu></app-menu>
+  <app-menu (hamburgerMenuOpened)="changeMenuOpenedStatus($event)"></app-menu>
 </div>
 
 <div class="wrapper" *ngIf="!menuOpened">
