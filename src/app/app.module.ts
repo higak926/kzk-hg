@@ -23,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { AppMenuComponent } from './app-menu/app-menu.component';
 
 registerLocaleData(ja);
 
@@ -32,6 +33,7 @@ registerLocaleData(ja);
     AppHeaderComponent,
     AppFooterComponent,
     ErrorComponent,
+    AppMenuComponent,
   ],
   imports: [
     BrowserModule,
