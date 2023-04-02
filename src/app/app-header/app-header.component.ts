@@ -118,9 +118,9 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
    * toTop
    */
   toTop(): void {
-    if (this.router.url !== this.topPath) {
-      this.router.navigate([this.topPath]);
-    }
+    this.router.url !== this.topPath
+      ? this.router.navigate([this.topPath])
+      : location.reload();
   }
 
   /**
@@ -194,6 +194,10 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
   onWindowResize() {
     this.getScreenWidth = window.innerWidth;
     this.isPhoneSize = this.getScreenWidth <= this.phoneSizeBounds;
+    if (!this.isPhoneSize) {
+      this.menuOpened = false;
+      this.hamburgerMenuOpened.emit(this.menuOpened);
+    }
   }
 
   /**
